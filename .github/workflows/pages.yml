@@ -1,0 +1,50 @@
+name: Deploy website
+
+# Publishes ./site to GitHub Pages. One-time setup:
+# Repo Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that Pages is enabled for this repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BT=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo missing)
+          if [ "$BT" != "workflow" ]; then
+            echo "::error title=GitHub Pages is not set up::Open Settings > Pages > Build and deployment > Source, choose 'GitHub Actions', then re-run this workflow. (Current state: $BT)"
+            exit 1
+          fi
+
+      - name: Point the download button at this repository
+        run: |
+          cp -r site _site
+          sed -i "s#__REPO__#${{ github.repository }}#g" _site/index.html _site/js/site.js
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

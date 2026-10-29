@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aura Island</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="haze" aria-hidden="true"></div>
+<main>
+  <section class="hero">
+    <div class="stage"><div id="pill" class="pill" role="button" aria-label="Island preview, tap to expand">
+      <div class="content"><div id="pTitle" class="t1"></div><div id="pSub" class="t2"></div></div>
+      <span class="dot"></span>
+    </div></div>
+    <h1>Aura</h1>
+    <p class="muted">A quieter top of your screen.</p>
+    <div class="chips">
+      <button class="chip" data-demo="notif">Message</button>
+      <button class="chip" data-demo="charge">Charging</button>
+      <button class="chip" data-demo="music">Music</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Setup</h2>
+    <div class="row"><div><b>Display over other apps</b><p>Lets the pill sit above your apps.</p></div><span id="sOverlay" class="badge">…</span></div>
+    <button class="ghost" id="bOverlay">Allow</button>
+    <div class="row"><div><b>Notification access</b><p>Reads previews to show them. Never dismisses them.</p></div><span id="sNotif" class="badge">…</span></div>
+    <button class="ghost" id="bNotif">Allow</button>
+    <div class="row"><div><b>Stay running</b><p>On Xiaomi and POCO, set Autostart on and battery to No restrictions.</p></div></div>
+    <button class="ghost" id="bBattery">Open app settings</button>
+  </section>
+
+  <section>
+    <h2>Island</h2>
+    <label class="row"><span><b>Enable island</b></span><input type="checkbox" id="tEnable"></label>
+    <label class="row"><span><b>Hide previews</b><p>Show only the app name.</p></span><input type="checkbox" id="tHide"></label>
+    <button class="solid" id="bTest">Send a test</button>
+    <p id="msg" class="muted small" role="status"></p>
+  </section>
+
+  <p class="foot muted small">Notification text stays on this device. No account needed.</p>
+</main>
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

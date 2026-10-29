@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="cordova-plugin-aura-island" version="0.1.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>AuraIsland</name>
+  <js-module src="www/aura.js" name="AuraIsland"><clobbers target="AuraIsland" /></js-module>
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="AuraIsland"><param name="android-package" value="dev.aura.island.AuraPlugin" /></feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+      <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+      <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+      <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+      <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <service android:name="dev.aura.island.OverlayService" android:exported="false" android:foregroundServiceType="specialUse">
+        <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="overlay" />
+      </service>
+      <service android:name="dev.aura.island.AuraNotificationListener" android:exported="true"
+               android:label="Aura Island" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+        <intent-filter><action android:name="android.service.notification.NotificationListenerService" /></intent-filter>
+      </service>
+    </config-file>
+    <source-file src="src/android/AuraPlugin.kt" target-dir="app/src/main/kotlin/dev/aura/island" />
+    <source-file src="src/android/OverlayService.kt" target-dir="app/src/main/kotlin/dev/aura/island" />
+    <source-file src="src/android/AuraNotificationListener.kt" target-dir="app/src/main/kotlin/dev/aura/island" />
+  </platform>
+</plugin>

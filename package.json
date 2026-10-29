@@ -1,0 +1,13 @@
+{
+  "name": "aura-island-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dynamic Island-inspired Android overlay (Cordova + Kotlin)",
+  "scripts": {
+    "setup": "cordova platform add android@13.0.0 && cordova plugin add ./native/cordova-plugin-aura-island",
+    "build:debug": "cordova build android --debug"
+  },
+  "devDependencies": {
+    "cordova": "^12.0.0"
+  }
+}
