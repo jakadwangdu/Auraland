@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="dev.aura.island" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Aura Island AI</name>
+    <description>Dynamic Island-inspired overlay for Android</description>
+    <author email="dev@example.com">Aura Island</author>
+    <content src="index.html" />
+    <allow-intent href="https://*/*" />
+    <platform name="android">
+        <preference name="Orientation" value="portrait" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#000000" />
+        <preference name="android-minSdkVersion" value="26" />
+        <preference name="android-targetSdkVersion" value="34" />
+        <preference name="GradlePluginKotlinEnabled" value="true" />
+        <preference name="GradlePluginKotlinVersion" value="1.9.24" />
+    </platform>
+</widget>

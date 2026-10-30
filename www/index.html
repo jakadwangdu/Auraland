@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aura Island</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="haze" aria-hidden="true"></div>
+<main>
+  <section class="hero">
+    <div class="stage"><div id="pill" class="pill" role="button" aria-label="Island preview, tap to expand">
+      <div class="content"><div id="pTitle" class="t1"></div><div id="pSub" class="t2"></div></div>
+    </div></div>
+    <h1>Aura</h1>
+    <p class="muted">A quieter top of your screen.</p>
+    <div class="chips">
+      <button class="chip" data-demo="notif">Message</button>
+      <button class="chip" data-demo="charge">Charging</button>
+      <button class="chip" data-demo="music">Music</button>
+    </div>
+    <p class="muted small tip">On the island: tap for quick actions, long-press to ask AI.</p>
+  </section>
+
+  <section>
+    <h2>Ask Aura</h2>
+    <div id="log" class="log" aria-live="polite"><div class="m ai">Try: "torch on", "open YouTube", "timer 5 min", or ask anything in English or Hinglish.</div></div>
+    <div class="ask"><input id="q" type="text" placeholder="Ask or command" autocomplete="off" enterkeyhint="send"><button id="send" class="solid">Send</button></div>
+  </section>
+
+  <section>
+    <h2>Setup</h2>
+    <div class="row"><div><b>Display over other apps</b><p>Lets the pill sit above your apps.</p></div><span id="sOverlay" class="badge">…</span></div>
+    <button class="ghost" id="bOverlay">Allow</button>
+    <div class="row"><div><b>Notification access</b><p>Reads previews to show them. Never dismisses them.</p></div><span id="sNotif" class="badge">…</span></div>
+    <button class="ghost" id="bNotif">Allow</button>
+    <div class="row"><div><b>Stay running</b><p>On Xiaomi and POCO open app settings: turn on Autostart, set battery to No restrictions, and allow "Display pop-up windows while running in the background".</p></div></div>
+    <button class="ghost" id="bBattery">Open app settings</button>
+  </section>
+
+  <section>
+    <h2>Island</h2>
+    <label class="row"><span><b>Enable island</b></span><input type="checkbox" id="tEnable"></label>
+    <label class="row"><span><b>Hide previews</b><p>Show only the app name.</p></span><input type="checkbox" id="tHide"></label>
+    <button class="solid" id="bTest">Send a test</button>
+    <p id="msg" class="muted small" role="status"></p>
+  </section>
+
+  <section>
+    <h2>Position</h2>
+    <div class="row"><b>Left / right</b><span id="vx" class="muted">0</span></div>
+    <input type="range" id="sx" min="-200" max="200" value="0" aria-label="Horizontal position">
+    <div class="row"><b>Up / down</b><span id="vy" class="muted">8</span></div>
+    <input type="range" id="sy" min="0" max="120" value="8" aria-label="Vertical position">
+    <div class="duo"><button class="ghost" id="bAlign">Align to camera</button><button class="ghost" id="bReset">Reset</button></div>
+    <p id="posMsg" class="muted small" role="status"></p>
+  </section>
+
+  <section>
+    <h2>Quick menu apps</h2>
+    <p id="chosen" class="muted">None chosen. Pick up to four apps for the island menu.</p>
+    <button class="ghost" id="bApps">Choose apps</button>
+    <div id="picker" class="picker" hidden>
+      <input id="appq" type="text" placeholder="Search apps" autocomplete="off">
+      <div id="appList" class="list"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>AI</h2>
+    <p class="muted small">Chat uses a free open model with no key. Phone commands work offline.</p>
+    <details><summary>Advanced</summary>
+      <input id="aiUrl" type="text" placeholder="https://text.pollinations.ai/openai" autocomplete="off">
+      <input id="aiModel" type="text" placeholder="mistral" autocomplete="off">
+      <button class="ghost" id="bAi">Save</button>
+    </details>
+  </section>
+
+  <p class="foot muted small">Notification text stays on this device. No account needed.</p>
+</main>
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

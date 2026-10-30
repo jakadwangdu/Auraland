@@ -1,0 +1,1 @@
+{ "name": "cordova-plugin-aura-island", "version": "0.1.0", "description": "Native overlay island for Aura Island AI", "cordova": { "id": "cordova-plugin-aura-island", "platforms": ["android"] }, "license": "MIT" }

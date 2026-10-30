@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura Island: a quieter top of your screen</title>
+<meta name="description" content="Aura Island turns notifications, charging and music into one small, soft pill at the top of your Android screen. Free and open source.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='5' y='12' width='22' height='8' rx='4' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="haze" aria-hidden="true"><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="#top">Aura</a>
+  <nav><a href="#moments">Moments</a><a href="#install">Install</a><a class="btn sm" data-dl href="https://github.com/__REPO__/releases/latest/download/Auraland.apk">Download</a></nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="island" id="island" data-state="idle" aria-hidden="true">
+      <div class="view v-notif"><span class="av">M</span><div><b>Maya</b><span>Dinner at 8? I can book a table.</span></div></div>
+      <div class="view v-charge"><div><b>Charging</b><span>82%</span></div><span class="bar"><i></i></span></div>
+      <div class="view v-music"><span class="eq"><i></i><i></i><i></i><i></i></span><div><b>Slow Tides</b><span>Halden, Evening</span></div></div>
+    </div>
+    <h1 aria-label="A quieter top of your screen."><span class="w" style="--i:0">A</span> <span class="w" style="--i:1">quieter</span> <span class="w" style="--i:2">top</span><br><span class="w" style="--i:3">of</span> <span class="w" style="--i:4">your</span> <span class="w" style="--i:5">screen.</span></h1>
+    <p class="lead">Aura Island folds notifications, charging and music into one small pill. It rests until something matters, then opens softly.</p>
+    <div class="cta">
+      <a class="btn" data-dl href="https://github.com/__REPO__/releases/latest/download/Auraland.apk">Download APK</a>
+      <span class="note" id="meta">Free for Android 8 and up</span>
+    </div>
+  </section>
+
+  <section class="story" id="moments">
+    <div class="pin">
+      <div class="copy">
+        <h2>Three moments, and one exit.</h2>
+        <div class="steps">
+          <div class="step on" data-s="notif"><b>A message arrives</b><p>The pill opens for a few seconds, shows who wrote and what they said, then folds away. Your notification stays untouched in the shade.</p></div>
+          <div class="step" data-s="charge"><b>You plug in</b><p>Your battery fills in slowly and quietly. It never interrupts something that matters more.</p></div>
+          <div class="step" data-s="music"><b>Music plays</b><p>Whatever is playing becomes a small live shape. Open it for controls, fold it when you are done.</p></div>
+          <div class="step" data-s="land"><b>You turn the phone sideways</b><p>Watching a video or playing a game? The island disappears completely and returns when you rotate back.</p></div>
+        </div>
+        <div class="dots" role="tablist" aria-label="Moments"><button role="tab" aria-label="Message" data-go="0"></button><button role="tab" aria-label="Charging" data-go="1"></button><button role="tab" aria-label="Music" data-go="2"></button><button role="tab" aria-label="Landscape" data-go="3"></button></div>
+      </div>
+      <div class="device">
+        <div class="phone" id="phone">
+          <div class="wall"></div>
+          <div class="island mini" id="island2" data-state="idle">
+                  <div class="view v-notif"><span class="av">M</span><div><b>Maya</b><span>Dinner at 8?</span></div></div>
+            <div class="view v-charge"><div><b>Charging</b><span>82%</span></div><span class="bar"><i></i></span></div>
+            <div class="view v-music"><span class="eq"><i></i><i></i><i></i><i></i></span><div><b>Slow Tides</b><span>Halden</span></div></div>
+          </div>
+          <div class="video"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="lines"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="calm" id="calm">
+    <p class="line">It waits.</p>
+    <p class="line">It opens when something matters.</p>
+    <p class="line">It vanishes when you watch full screen.</p>
+    <p class="line">Your notifications never leave your phone.</p>
+  </section>
+
+  <section class="more" id="more">
+    <h2>A pill with a few tricks.</h2>
+    <div class="trio">
+      <div><b>Quick menu</b><p>Tap the pill for a torch, scanner, camera and the apps you pick. One tap each.</p></div>
+      <div><b>Ask anything</b><p>Long-press to chat in English or Hinglish. Say "torch on" or "open YouTube" and it just happens.</p></div>
+      <div><b>Right on your camera</b><p>Nudge it left, right, up or down, or let it align itself to your camera cutout.</p></div>
+    </div>
+  </section>
+
+  <section class="install" id="install">
+    <h2>Install in a minute.</h2>
+    <ol>
+      <li><b>Download the APK</b><span>Open it on your phone and allow installs from your browser when asked.</span></li>
+      <li><b>Allow display over other apps</b><span>This lets the pill sit above whatever you are using.</span></li>
+      <li><b>Turn on notification access</b><span>Needed to read previews. Hide them any time in settings.</span></li>
+      <li><b>Let it run in the background</b><span>On Xiaomi and POCO, set Autostart on and battery saver to No restrictions.</span></li>
+    </ol>
+  </section>
+
+  <section class="final">
+    <div class="ring" aria-hidden="true"><i></i><i></i><i></i><p><span>breathe in</span><span>breathe out</span></p></div>
+    <h2>Quiet by default.</h2>
+    <a class="btn" data-dl href="https://github.com/__REPO__/releases/latest/download/Auraland.apk">Download APK</a>
+    <p class="note" id="meta2">Open source. No account. No ads.</p>
+  </section>
+</main>
+
+<footer>
+  <span>Aura Island is independent and not affiliated with Apple.</span>
+  <a href="https://github.com/__REPO__">Source on GitHub</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

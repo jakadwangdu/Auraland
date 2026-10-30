@@ -1,0 +1,80 @@
+name: Build APK and Release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["site/**", "README.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    # Pinned image: ships the Android SDK. (ubuntu-latest is being moved to a newer image.)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Cordova runs `gradle wrapper` itself, so a Gradle on PATH is required.
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
+      # The runner already has the Android SDK; just accept licences and add API 34.
+      - name: Prepare Android SDK
+        run: |
+          export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" --install "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+
+      - name: Install Cordova
+        run: npm install -g cordova@12
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Add Android platform
+        run: |
+          if [ ! -d platforms/android ]; then
+            cordova platform add android@13.0.0
+          fi
+
+      - name: Add Aura Island plugin
+        run: |
+          if ! cordova plugin ls | grep -qi "aura-island"; then
+            cordova plugin add ./native/cordova-plugin-aura-island
+          fi
+
+      - name: Build APK
+        run: cordova build android --debug
+
+      - name: Rename APK
+        run: |
+          cp platforms/android/app/build/outputs/apk/debug/app-debug.apk Auraland.apk
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Auraland v${{ github.run_number }}
+          body: "Automated APK build from commit ${{ github.sha }}"
+          files: Auraland.apk
